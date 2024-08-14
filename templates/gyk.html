@@ -1,0 +1,88 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .gyk_div{
+        position: relative;
+        margin-top: 7%;
+        margin-bottom: 10%;
+        padding: 20%;
+        padding-top: 0%;
+        padding-bottom: 0%;
+        /* margin-left: 5%; */
+        
+    }
+    .h1_gyk{
+       
+        font-family:Impact;
+        /* text-decoration:; */
+        margin-bottom: 10%;
+        font-size: 40px;
+        text-align: center;
+        font-weight: 100;
+    }
+    .h2_gyk{
+        font-family: helvetica;
+        font-weight: 100;
+        /* text-decoration: underline; */
+
+    }
+    .h3_gyk{
+        font-family: helvetica;
+        margin-left: 5%;
+        font-weight: 200;
+        
+
+    }
+    .h3_gyk_vég{
+        font-family: helvetica;
+        text-align: center;
+        font-weight: 100;
+        color: grey;
+
+    }
+    .nolink{
+        text-decoration: none;
+        color: black;
+        
+        
+    }
+    @media(max-width:600px) {
+        .hs_end{
+            gap: 15%;
+            margin-left: 0%;
+            width:90%;
+        }
+        .gyk_div{
+            margin-left: 1%;
+            margin-top: 25%;
+            padding: 2%;
+        }
+        .h1_gyk{
+            font-size: 30px;
+        }
+        .h2_gyk{
+            font-size: 20px;
+        }
+        .h3_gyk{
+            font-size: 15px;
+        }
+    }
+</style>
+<div class="gyk_div">
+    <h1 class="h1_gyk">Gyakori Kérdések</h1>
+    <h2 class="h2_gyk"><i>Eredetiek a cipők?</i></h2>
+    <h3 class="h3_gyk">-Igen, a cipők olyan webshopokból származnak amik 100%-ban eredeti cipőket forgalmaznak.</h3><br>
+    <h2 class="h2_gyk"><i>Hány webshopot tartalmaz a HypeToBuy?</i></h2>
+    <h3 class="h3_gyk">-Összesen 5 webshopot tartalmaz az oldal:<i> <a class="nolink" href="https://balazskicks.com">Balazskicks</a>, <a class="nolink" href="https://truetosole.hu">Truetosole</a>, <a class="nolink" href="https://onsize.hu">Onsize</a>, <a class="nolink" href="https://rdrop.hu">Rdrop</a>, <a class="nolink" href="https:sneakcenter.com">Sneakcenter</a>.</i>
+    Ezek 100%-ban megbízható oldalak, és csak tökéletes minőségű sneakereket árulnak.</h3><br>
+    <i><h2 class="h2_gyk">Az oldal tartalmazhat hamis információt?</h2></i>
+    <h3 class="h3_gyk">-Törekszünk arra hogy az oldal minnél pontosabb legyen, azonban előfordulhat, hogy nem találja meg az összes elérhető weboldalon a keresett sneakert a nevek eltérése miatt, ilyenkor azt  ajánljuk, hogy használd a keresőt és keress rá egy kulcsszóra amit tartalmaz a cipő neve.</h3><br>
+    <h2 class="h2_gyk"><i>Fog még bővülni a weboldal?</i></h2>
+    <h3 class="h3_gyk">-Igen lehetséges, hogy a jövőben nem csak 5 webshopot fog tartalmazni a HypeToBuy. A jelenlegi webshopok a legnagyobb magyar, csak sneakereket árusító oldalak. Ahhoz, hogy bővűlni tudjunk sok időre van szűkségünk, de megteszünk mindent, hogy egyre jobb és jobb legyen a weboldal.</h3><br>
+    <h3 class="h3_gyk_vég">Ha más kérdésed van keress minket:<br> hypetobuy.info@gmail.com <br> +36 70 780 0330</h3>
+
+</div >
+
+{% endblock %}

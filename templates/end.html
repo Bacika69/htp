@@ -1,0 +1,104 @@
+{% load static %}
+<style>
+    .end{
+        position:absolute;
+        background-color: rgb(10,66,93);
+        display: grid;
+        grid-template-columns: auto auto auto;
+        align-items: center;
+        height: 30%;
+        width:  100%;
+        overflow: hidden;
+        left: 0;
+        z-index: 900;
+        
+    }
+    .hs_end{
+
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+
+        margin-top: 1%;
+        margin-left: 18%;
+        gap: 30%;
+    }
+    .h_div{
+        /* margin-left: 30%; */
+        width: 150%;
+        display: block;
+    }
+    
+    .h1_end{
+        color: white;
+        font-family: helvetica;
+        font-weight: 110;
+        text-align: center;
+    }
+    .h2_end{
+        color: white;
+        font-family: helvetica;
+        font-weight: 110;
+        text-align: center;
+        font-size: 20px;
+    }
+    .h3_end{
+        color: lightgray;
+        font-size: 15px;
+        font-family: helvetica;
+        font-weight: 110;
+        text-align: center;
+    }
+    @media(max-width:1200px) {
+        .hs_end{
+            gap: 5%;
+            margin-left: 2.5%;
+            width: 100%;
+        }
+        .end{
+            margin-top: 5%;
+            height: 20%;
+        }
+        .h_div{
+            width: 100%;
+        }
+        
+    }
+    @media(max-width:530px) {
+        .hs_end{
+            gap: 15%;
+            margin-left: 8%;
+            width:90%;
+        }
+        .h_div{
+            width: 100%;
+        }
+        .h2_end{
+            font-size: 10px;
+        }
+        .h3_end{
+            font-size: 7px;
+        }
+
+    }
+</style>
+<div class="end">
+    <div class="hs_end">
+        <div class="h_div">
+            <h2 class="h2_end">HypeToBuy</h2>
+            <h3 class="h3_end">Találd meg a kedvenc sneakered a legjobb áron</h3>
+        </div>
+        <div class="h_div">
+            <a  method="GET" href="{% url 'gyakorikerdesek'%}"  style="text-decoration: none; cursor: pointer;"><h2 class="h3_end">Gyakori Kérdések</h2></a>
+            <h2 class="h3_end">Általános Szerződési Feltételek</h2>
+        </div>
+        
+        <div class="h_div">
+            <h2 class="h2_end">Ügyfélszolgálat</h2>
+            <h3 class="h3_end">hypetobuy.info@gmail.com</h3>
+            <h3 class="h3_end">+36 70 780 0330</h3>
+        </div>
+        
+    </div>
+</div>

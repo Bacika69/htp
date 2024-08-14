@@ -1,0 +1,708 @@
+{% load static %}
+<style>
+    .márka-container{
+    display: table-row;
+    grid-template-columns: repeat(4, auto);
+    margin-left: 1%;
+    gap: 5%;
+    }
+    
+    .nav-container form input[type="text"] {
+        width: 100%; 
+        padding: 10px; 
+        font-size: 16px; 
+    }
+    .no-link-style {
+        text-decoration: none;
+        color: white;  
+        font-family: helvetica;
+        position: relative;
+        cursor: pointer;
+    }
+    .menu {
+        display: flex;
+        justify-content: right;
+        margin-right: 5%;
+        color: #fff;
+        font-family: helvetica;     
+    }
+    .alahuzni {
+        cursor: pointer;
+        position: relative;
+    }
+    .alahuzni::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        visibility: hidden;
+        transition: all 0.2s ease-in-out;
+    }
+    .alahuzni:hover::after {
+        visibility: visible;
+        width: 100%;
+    }
+    
+    @keyframes slideInFromLeft {
+        from {
+            transform: translateX(-100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+    @keyframes slideInFromRight {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+    @keyframes slideOutToRight {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(100%);
+        }
+    }
+    @keyframes slideOutToLeft {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-100%);
+        }
+    }
+
+
+        .x_design {
+        border-radius: 100%;
+        border-color: white;
+        background-color: rgb(10,66,93);
+        height: 50px;
+        width: 50px;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+        overflow: hidden;
+        transition: border-color 0.3s;
+        cursor: pointer;
+    }
+    .X {
+        color: white;
+        transition: color 0.3s;
+        size: 50px;
+    }
+    .x_design:hover .X {
+        border-color: black;
+        color: grey;
+    }
+    .overlay-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none; 
+    }
+    #overlay-content {
+        position: fixed;
+        display: grid;
+        grid-template-columns: 15fr 1fr;
+        left:70%;
+        top: 15%;
+        bottom: 40%;
+        height: 35%;
+        width: 20%;
+        z-index: 1000;
+        background-color: rgb(10,66,93);
+        padding: 20px;
+        border-radius: 30px;
+        font-family: helvetica;
+ 
+        
+    }
+    #search {
+        position:fixed;
+        z-index: 1099;
+        margin-left: 0%;
+        margin-top: 0.5%;
+        top: 0.5%;
+        margin-right: 66%;
+        width: 33%;
+        height: 98%;
+        background-color: white;
+        
+    }
+    #show-all{
+        cursor: pointer;
+        position: absolute;
+        position: fixed;
+        width: 97%;
+        bottom: 2%;
+        height: 7%;
+        margin-left: 1.5%;
+        display: none;
+        z-index: 1300;
+        background-color: rgb(10,66,93);
+        justify-content: center;
+        align-items: center;
+    }
+    .össz_mut{
+
+        color: white;
+        text-align: center;
+        font-family: helvetica;
+        bottom: 0%;
+        font-size: 20px;
+    }
+    .overlayfilter {
+        transition: ease;
+        position: fixed;
+        grid-template-columns: 15fr 1fr;
+        left:0%;
+        top: 0%;
+        bottom: auto;
+        min-height: 80%;
+        height: min-content;
+        width: 87%;
+        z-index: 1000;
+        background-color: rgb(10,66,93);
+        padding: 20px;
+        display: none;
+        border-radius: 30px;
+    }
+    .help{
+        transition: ease;
+        position: fixed;
+        display: none;
+        grid-template-columns: 15fr 1fr;
+        left:20%;
+        top: 20%;
+        height: min-content;
+        width: 60%;
+        z-index: 1000;
+        background-color: rgb(10,66,93);
+        padding: 20px;
+        border-radius: 30px;
+        font-family: helvetica;
+    }
+    #search-results {
+        position: fixed;
+        display: none;
+        grid-template-rows: repeat(3, 1fr);
+        color: white;
+        background-color: none;
+        font-size: large;
+        z-index: 1100;
+        margin-left: 0%;
+        margin-top: 8.5%;
+        margin-right:66%;
+        background-color: white;
+        height: 70%;
+        width: 95%;
+        gap: 3%;
+        
+    }
+    #search-input::placeholder {
+        text-decoration: none;
+    }
+    #search-input::placeholder {
+        font-size: 25px; 
+        font-family: helvetica;
+        color: grey; 
+    }
+    .keresokep{
+        width:190px;
+        height:115px;
+    }
+    .felsomargokereso{
+        display:flex;
+        margin-top: -10%;
+        height: 50%;
+    }
+    .haromcsik{
+        display: none;
+        margin-left: 30%;
+    }
+    #htpdiv{
+             flex: 1;
+             display: flex; 
+             justify-content: center; 
+             align-items: center; 
+             margin-left: 10%;
+        }
+        
+    .keresolink{
+            z-index:1100 ;
+            display:flex;
+            cursor:pointer;
+            text-decoration:none;
+            color:black;
+            font-family:helvetica;
+            margin-top: -10%; 
+            width: fit-content;
+            height: 70%;
+
+    }
+    .keresoh3{
+        margin-top: 10%;
+        height: fit-content;
+    }
+    .no-outline {
+        width: 90%;
+        height: 40px;
+        margin-top: 5%;
+        margin-left: 5%;
+        font-size: 30px;
+        border: 0px white;
+        outline: none;
+    }
+    .no-outline::placeholder{
+        font-size: 20px;
+    }
+    #searchX{
+        position: absolute;
+        
+        align-items: center;
+        justify-content: center;
+        top: 4%;
+        height: 24px;
+        width: 24px;
+        right: 5%;
+    }
+    .searchhr{
+        border: 0;border-top: 2px solid black; width: 95%;
+        z-index: 1200Ö  ;
+    }
+    .no-results{
+        font-size: 30px;
+        margin-left: 5%;
+        font-family: helvetica;
+        color: black;
+    }
+    .no-results2{
+        font-size: 20px;
+        margin-left: 5%;
+        font-family: helvetica;
+        margin-top: 0%;
+        color: gray;
+    }
+    @media (max-width: 1024px) {
+        .keresokep{
+            width:200px;
+            height:113px;
+        }
+        #search-results{
+            height: min-content;
+            gap: 20%;
+        }
+        .keresoh3{
+            font-size: medium;
+        }
+        #search{
+            width: 70%;
+        }
+        #htpdiv{
+            justify-content: center;
+            margin-left: 15%;
+        }
+        #overlay-content{
+            width: 30%;
+            left: 60%;
+            height: 25%;
+        }
+        .overlayfilter{
+            width: 85%;
+            left: 0%;
+            right: 0%;
+            top: 0%;
+            min-height: 87%;
+            height: min-content;
+        }
+        #searchX{
+            
+            top: 3%;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .nav-container {
+            height: 60px;
+        }
+        .alahuzni:hover::after {
+            visibility: visible;
+            width: 0%;
+        }
+        #htp{
+            font-size: 25px;
+            margin-right: 14%;
+        }
+        #snkr{
+            font-size: medium;
+        }
+        #htpdiv{
+            justify-content: left;
+            margin-left: 5%;
+        }
+        svg{
+            width: 35px;
+            height: 44px;
+        }
+        #overlay-content{
+            width: 60%;
+            left: 30%;
+            height: 40%;
+        }
+        .overlayfilter{
+            width: 85%;
+            left: 0%;
+            right: 0%;
+            top: 0%;
+            min-height: 87%;
+            height: min-content;
+        }
+        #csoport{
+            font-size:x-large;
+        }
+        .X{
+            height: 20px;
+            width: 20px;
+        }
+        .x_design{
+            height: 45px;
+            width: 45px;
+        }
+        #search{
+            width:100%;
+            height: 100%;
+            margin-left: -2%;
+        
+        }
+        .no-outline{
+            width: 90%;
+        }
+        .searchhr{
+            margin-top: 0%;
+        }
+        #search-results{
+            margin-left: -2%;
+            position: fixed;
+            overflow: auto;
+            top: 5%;
+            width: 99%;
+            height: 76%;
+            gap: 1%;
+            
+        }
+        #show-all{
+            position: fixed;
+            margin-top: 140%;
+        }
+        .keresolink{
+            margin-top: 5%;
+            margin-left: 1%;
+        }
+        .keresokep{
+            width:180px;
+            height:100px;
+            
+        }
+        .felsomargokereso{
+            margin-top: -12%;
+        }
+        .keresoh3{
+            font-size: 15px;
+        }
+        #searchX{
+            
+            top: 3%;
+        }
+        #Help{
+            height: min-content;
+            left: 5%;
+            margin-right: 10%;
+            width: 80%;
+            font-size: medium;
+        }
+        .menu{
+            display: none;
+        }
+        .haromcsik{
+            display: block;
+            justify-content: right;
+            margin-left: 50%;
+            margin-right: 5%;
+            margin-top: 12%;
+        }
+        
+    }
+
+    @media (max-height: 590px) {
+        #show-all-div{
+            display: none;
+        }
+        #search-results{
+            top: 10%;
+            height: 80%;
+        }
+        #searchX{
+            top: 5%;
+        }
+    }
+
+    
+</style>
+
+<div class="nav-container">
+    <div style="display: flex; gap: 10%; margin-left: 5%; width: 40%;">
+        <div id="openhelp" style="cursor: pointer;"  onclick="openHelp()">
+            <svg id="svg"  xmlns="http://www.w3.org/2000/svg" width="50" height="60" viewBox="0 0 22 22" fill="none">
+                <path d="M19.0006 9.03002C19.0007 8.10058 18.8158 7.18037 18.4565 6.32317C18.0972 5.46598 17.5709 4.68895 16.9081 4.03734C16.2453 3.38574 15.4594 2.87265 14.5962 2.52801C13.7331 2.18336 12.8099 2.01409 11.8806 2.03002C10.0966 2.08307 8.39798 2.80604 7.12302 4.05504C5.84807 5.30405 5.0903 6.98746 5.00059 8.77001C4.95795 9.9595 5.21931 11.1402 5.75999 12.2006C6.30067 13.2609 7.10281 14.1659 8.09058 14.83C8.36897 15.011 8.59791 15.2584 8.75678 15.5499C8.91565 15.8415 8.99945 16.168 9.00059 16.5V18.03H15.0006V16.5C15.0006 16.1689 15.0829 15.843 15.24 15.5515C15.3971 15.26 15.6241 15.0121 15.9006 14.83C16.8528 14.1911 17.6336 13.328 18.1741 12.3167C18.7147 11.3054 18.9985 10.1767 19.0006 9.03002V9.03002Z" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15 21.04C14.1345 21.6891 13.0819 22.04 12 22.04C10.9181 22.04 9.86548 21.6891 9 21.04" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <div  onclick="openSearch(), openOverlaybackground()" >
+            <svg id="svg" role="presentation" stroke-width="1"  cursor="pointer" focusable="false" width="50" height="60" class="icon icon-search" viewBox="0 0 22 22">
+                <circle cx="11" cy="10" r="7" fill="none" stroke="white"></circle>
+                <path d="m16 15 3 3" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg> 
+            
+        </div>
+    </div>
+    <div id="htpdiv" >
+         <a class="no-link-style" href="/">
+            <h1 id="htp" class="alahuzni" style="color: white;">HypeToBuy</h1>
+        </a>
+    </div>
+    <div>
+        <div class="menu">
+            <div class="no-link-style" onclick="openOverlay()"><h2 id="snkr" class="alahuzni" style="color: white;">SNEAKEREK</h2></div>
+        </div>
+        <div class="haromcsik">
+                <span class="sr-only"></span>
+                <svg onclick="openOverlay()" role="presentation" stroke-width="1" focusable="false" width="15" height="15" class="icon icon-hamburger" viewBox="0 0 30 30">
+                <path d="M1 5h20M1 11h20M1 17h20" stroke="white" stroke-linecap="round"></path>
+                </svg>
+        </div>
+    </div>
+</div>
+
+<div id="search" style="display: none;" >
+    <div style="display: flex;">
+        <form id="search-form" method="GET" action="{% url 'sneakerek' %}">
+            <input id="search-input" type="text" name="q" placeholder="Keresés..." class="no-outline">
+        </form>
+        <svg id="searchX" onclick="closeSearch()"  viewBox="0 0 30 30" width="15" height="15" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </div>  
+    <div>
+        <hr class="searchhr">
+    </div> 
+    <div id="search-results">
+    
+    </div>
+    <div id="show-all-div">
+        <div id="show-all" method="GET" action="{% url 'sneakerek' %}?q={{q}}">
+                <h3 class="össz_mut">Összes megtekintése</h3>
+        </div>
+    </div>      
+    <script>
+        $(document).ready(function() {
+            $('#search-input').on('keyup', function() {
+                var query = $(this).val();
+                if (query.length > 0) {
+                    openResults();
+                    
+                    $.ajax({
+                        url: "{% url 'search' %}",
+                        data: {'q': query},
+                        success: function(data) {
+                            $('#search-results').empty();
+                            if (data.length > 0) {
+                                $.each(data, function(index, item) {
+                                    var resultHtml = 
+                                        '<a class="keresolink" href="{% url "home" %}?q=' + encodeURIComponent(item.name) + '">' +
+                                            '<img src="' + item.image + '" alt="' + item.name + '" class="keresokep">' +
+                                            '<div style="display:grid; margin-left:0px; font-size: small; gap:0%">' +
+                                                '<div>' +
+                                                    '<h3 class="keresoh3" style="color:black; font-family:helvetica;">' + item.name + '</h3>' +
+                                                '</div>' +
+                                                '<div class="felsomargokereso">' + 
+                                                    '<h3 class="keresoh3" style="color:grey; ">' + item.price + 'Ft' + '</h3>' +
+                                                    '<h3 class="keresoh3" style="color:rgb(3, 71, 53); ">' + '&nbsp;'+ '&nbsp;' + item.cég +'</h3>' +
+                                                '</div>' +
+                                        '   </div>' +
+                                        '</a>';
+                                    $('#search-results').append(resultHtml);
+                                });
+                            } else {
+
+                                var noResultsHtml = '<div style="gap:1px; width:90%; overflow-x:hidden; overflow-y: none; height:200%">' + '<h1 class="no-results">' + 'Nincs találat erre:' + '&nbsp;' +'"' + query + '"' + '</h1>' + '<h2 class="no-results2">'
+                                + 'Ellenőrizd a keresést, vagy probáld meg újra' + '</h2>' + '</div>';
+                                $('#search-results').append(noResultsHtml);
+                            }
+                        }
+                    });
+                } else {
+                    $('#search-results').empty();
+                    closeResults();
+                }
+            });
+        });
+
+
+    </script>
+</div>
+<div id="Help" class="help">
+    <div>
+        <h1 style="color: white; font-weight: bold;">Így használd</h1>
+        <h2 style="color: white; font-family: helvetica;font-size: 1.3em; ">
+            1. Kattints a cipőre hogy megtaláld, hogy hol elérhető.<br>
+            2. A keresőnél kulcsszavakra keress rá, hogy biztosan megtaláld a keresett cipőt.<br>
+            3. Ha csak egy helyen elérhető, akkor egyből bedob a cipőhöz.<br>
+            4. A kék színnel jelölt cégnév, elvisz a keresett cipő weboldalára.
+        </h2>
+    </div>
+    <button class="x_design" onclick="closeHelp()">
+        <svg class="X" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </button>
+</div>
+<div id="overlay-background" class="overlay-background" onclick="closeOverlay(), closeSearch(), closeResults()"></div>
+<div id="overlay-background-help" class="overlay-background" onclick="closeHelp()"></div>
+<div id="overlay" style="display: none;">
+    <div id="overlay-content">
+            <div class="márka-container">
+                {% for csoport, cipők in best_shoes.items %}
+                    <div onclick="openOverlayfilter('{{ csoport }}')" style="cursor: pointer;">
+                        <a class="no-link-style"><h2 id="csoport" class="alahuzni" style="color:white;">{{ csoport }}</h2></a>
+                    </div>
+                    <div id="overlayfilter-{{ csoport }}" class="overlayfilter">
+                        <div class="márka-container">
+                            <div>
+                                <div>
+                                    <a method="GET" class="no-link-style" href="{% url 'sneakerek' %}?q={{ csoport }}"><h2 id="csoport" class="alahuzni" style="color:white">{{ csoport }}</h2></a>
+                                </div>
+                                {% for cipő in cipők %}
+                                <div>
+                                    <a method="GET" class="no-link-style" href="{% url 'sneakerek' %}?q={{ cipő }}"><h2 id="csoport" class="alahuzni" style="color: rgb(246, 232, 208)">{{ cipő }}</h2></a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div>
+                            <button class="x_design" onclick="closeOverlayfilter('{{ csoport }}')">
+                                <svg class="X" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="15" y1="6" x2="9" y2="12"></line>
+                                    <line x1="9" y1="12" x2="15" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div>
+                <button class="x_design" onclick="closeOverlay()">
+                        <svg class="X" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                </button>
+            </div>
+    </div>
+</div>
+<script>
+    document.getElementById('show-all').addEventListener('click', function() {
+        var searchInput = document.getElementById('search-input').value;
+        var form = document.getElementById('search-form');
+        form.action = "{% url 'sneakerek' %}?q=" + encodeURIComponent(searchInput);
+        form.submit();
+    });
+
+    function openOverlay() {
+        const overlayContent = document.getElementById("overlay-content");
+        document.getElementById("overlay-background").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+        document.body.style.overflow = 'hidden';
+        overlayContent.style.animation = 'slideInFromRight 0.4s ease-out forwards';
+    }
+
+    function closeOverlay() {
+        const overlayContent = document.getElementById("overlay-content");
+        overlayContent.style.animation = 'slideOutToRight 0.4s ease-out forwards';
+        
+        setTimeout(function() {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("overlay-background").style.display = "none";
+            document.body.style.overflow = 'auto';
+        }, 500); 
+    }
+
+
+    function openSearch() {
+        document.getElementById("search").style.display = "block"; 
+        document.getElementById("search-input").style.display = "block";
+        document.getElementById("overlay-background").style.display = "block";
+        document.getElementById("search-input").focus();
+        document.body.style.overflow = 'hidden';
+        document.getElementById("search").style.animation =  'slideInFromLeft 0.4s ease-out forwards'
+        document.getElementById('search-results').style.animation = ' 0.4s ease-out forwards';
+    }
+    function closeSearch() {
+
+        document.getElementById("search").style.animation = 'slideOutToLeft 0.4s ease-out forwards';
+        document.getElementById('search-results').style.animation = 'slideOutToLeft 0.4s ease-out forwards';
+        setTimeout(function()  {
+            document.getElementById("search").style.display = "none";
+            document.getElementById("search-input").style.display = "none";
+            document.getElementById("overlay-background").style.display = "none";
+            document.getElementById('search-results').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }, 500);
+        
+    }
+    function openOverlayfilter(csoport) {
+        document.getElementById('overlayfilter-' + csoport).style.display = 'grid';
+    }
+
+    function closeOverlayfilter(csoport) {
+        document.getElementById('overlayfilter-' + csoport).style.display = 'none';
+    }
+    function openHelp(){
+        document.getElementById("overlay-background-help").style.display = "grid";
+        document.getElementById('Help').style.display = 'grid';
+        document.body.style.overflow = 'hidden';
+        
+    }
+
+    function closeHelp(){
+        document.getElementById('Help').style.display = 'none';
+        document.getElementById("overlay-background-help").style.display = "none";
+        document.body.style.overflow = 'auto';
+    }
+    function openResults(){
+        document.getElementById('search-results').style.display = 'grid';
+        document.getElementById('show-all').style.display = 'flex';
+        
+    }
+    function closeResults(){
+        document.getElementById('search-results').style.display = 'none';
+        document.getElementById('show-all').style.display = 'none';
+        
+    }
+    
+
+</script>
