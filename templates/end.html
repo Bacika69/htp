@@ -9,7 +9,7 @@
         height: 30%;
         width:  100%;
         overflow: hidden;
-        left: 0;
+        left: 0; 
         z-index: 900;
         
     }
@@ -50,6 +50,10 @@
         font-weight: 110;
         text-align: center;
     }
+    #hr_end{
+        display: none;
+
+    }
     @media(max-width:1200px) {
         .hs_end{
             gap: 5%;
@@ -65,15 +69,58 @@
         }
         
     }
-    @media(max-width:530px) {
+@media(max-width:530px) {
+        .end{
+            position:absolute;
+            background-color: rgb(10,66,93);
+            display:grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            justify-items: center;
+            height: 30%;
+            width:  100%;
+            overflow: hidden;
+            left: 0; 
+            z-index: 900;
+            
+        }
         .hs_end{
-            gap: 5%;
-            margin-left: 8%;
-            width:90%;
+            width: 100%;
+            display:flow-root;
+            /* grid-template-columns: 1fr 1fr 1fr; */
+            justify-items: center;
+            margin-top: 1%;
+            margin-left: 0%;
+            gap: 30%;
         }
         .h_div{
-            width: 150%;
+            /* margin-left: 30%; */
+            width: 100%;
+            display: block;
         }
+        
+        .h1_end{
+            color: white;
+            font-family: helvetica;
+            font-weight: 110;
+            text-align: center;
+        }
+        .h2_end{
+            color: white;
+            font-family: helvetica;
+            font-weight: 110;
+            text-align: center;
+            font-size: 20px;
+        }
+        .h3_end{
+            color: lightgray;
+            font-size: 15px;
+            font-family: helvetica;
+            font-weight: 110;
+            text-align: center;
+        }
+        
+        
         .h2_end{
             font-size: 13px;
             font-weight: none;
@@ -81,6 +128,11 @@
         .h3_end{
             font-size: 10px;
             font-weight: none;
+        }
+        #hr_end{
+            display: block;
+            width: 50%;
+            
         }
 
     }
@@ -91,11 +143,12 @@
             <h2 class="h2_end">HypeToBuy</h2>
             <h3 class="h3_end">Találd meg a kedvenc sneakered a legjobb áron</h3>
         </div>
+        <hr id="hr_end">
         <div class="h_div">
             <a  method="GET" href="{% url 'gyakorikerdesek'%}"  style="text-decoration: none; cursor: pointer;"><h2 class="h3_end">Gyakori Kérdések</h2></a>
             <h2 class="h3_end">Általános Szerződési Feltételek</h2>
         </div>
-        
+        <hr id="hr_end">
         <div class="h_div">
             <h2 class="h2_end">Ügyfélszolgálat</h2>
             <h3 class="h3_end">hypetobuy.info@gmail.com</h3>
