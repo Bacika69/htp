@@ -828,7 +828,10 @@ def sneakerek(request):
 
         return render(request, 'sneakerek.html', context)
 def gyk(request):
-    return render(request, 'gyk.html')
+    best_shoes = {'Nike': ["Air Force 1", "Air Max 1", "Dunk High", "Dunk Low"], 'Air Jordan': ["Air Jordan 1 High", "Air Jordan 1 Mid", "Air Jordan 1 Low", "Air Jordan 3", "Air Jordan 4"],
+                    'Adidas': ["Adidas Campus", "Adidas Gazelle", "Adidas Samba"], 'Yeezy': ["Yeezy Boost 350", "Yeezy Slide", "Yeezy Foam"], 'New Balance': ["New Balance 550", "New Balance 2002R", "New Balance 9060"]}
+    context = {'best_shoes': best_shoes}
+    return render(request, 'gyk.html', context)
 from django.http import JsonResponse
 from django.views import View
 
