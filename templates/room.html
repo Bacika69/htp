@@ -71,9 +71,15 @@
         {% endif %}
     </div>
     <div class="text">
-        <h1 >{{shoe.name}}</h1>
+        <h1 style="text-transform: capitalize;" >{{shoe.name}}</h1>
         <div class="árcég">
-            <h2 style="color: gray;">{{shoe.price}} Ft</h2>
+            <div style="display: flex;">
+                {% if shoe.akcios_ár != "0" %}
+                    <h2 style="text-decoration: line-through; color: gray; text-align: center;">{{shoe.akcios_ár}} Ft </h2>&nbsp; &nbsp;
+                {% endif %}
+                
+                <h2 style="color: gray;">{{shoe.price}} Ft</h2>
+            </div>
             <a href="{{shoe.link}}"  style="color: rgb(9, 9, 75); text-decoration: none;"><h2 class="cég">{{shoe.cég}}</h2></a>
         </div>
     </div>

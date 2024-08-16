@@ -25,7 +25,7 @@
     .text_style {
         color: black;
         overflow: hidden;
-        font-family: Arial;
+        font-family: Helvetica;
     }
     .shoe_info {
         margin-top: 10px;
@@ -409,7 +409,7 @@
                 <img class="shoe_img" src="{{ cipő.image }}">
             {% endif %}
             <div class="text_style">
-                <h3 style="text-align: center;">{{ cipő.name }}</h3>
+                <h3 style="text-align: center; text-transform: capitalize;">{{ cipő.name }}</h3>
                 <h3 id="ár"  style="color: gray;">
                     {% if cipő.akcios_ár != "0" %}
                     <div style="text-align: center;">

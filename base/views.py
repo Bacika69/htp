@@ -231,7 +231,7 @@ def home(request):
     árak = []
     fotók = []
     fotok2 = []
-    akciosok = []
+    akciosokok = []
     linkek = []
 
     for i in range(1, 1):
@@ -287,8 +287,8 @@ def home(request):
                         linkek.append(link)
                         árak.append(ár)
                         nevek.append(név)
-                        akciosok.append(akciosár)
-    cipők = list(zip(nevek, árak, fotók, fotok2, linkek, akciosok))
+                        akciosokok.append(akciosár)
+    cipők = list(zip(nevek, árak, fotók, fotok2, linkek, akciosokok))
     for cipő_dolgok in cipők:
         rendezes = cipő_dolgok[1].replace(" ", "")
         Shoe.objects.get_or_create(
@@ -305,7 +305,7 @@ def home(request):
     base_url_3 = "https://www.rdrop.hu/collections/osszes-sneaker?page={}"
 
 
-    for i in range(1, 1):
+    for i in range(1, 0):
         
 
         url = base_url_3.format(i)
@@ -345,6 +345,8 @@ def home(request):
                 akciosár = int(akciosár)
                 akciosár = '{:,}'.format(akciosár)
                 akciosár = akciosár.replace(",", " ")
+                if akciosár < ár or akciosár == ár:
+                     akciosár = 0
                 
             except:
                  akciosár = 0
@@ -718,7 +720,7 @@ def home(request):
                     for word in q.split(' '):
                         if word in shoe_name:
                             match_count += 1
-                    szürö_szavak = ["black", "white", "red", "yellow","grey","light", "blue", "green", "orange", "prm", "pink","dark", "beige", "high", "alternate", "low", "mid", "navy","arctic", "mirage", "reverse", "elephant", "rope"]
+                    szürö_szavak = ["black", "state", "white", "red", "yellow","grey","light", "blue", "green", "orange", "prm", "pink","dark", "beige", "high", "alternate", "low", "mid", "navy","arctic", "mirage", "reverse", "elephant", "rope"]
                     if match_count == match_szam:
                         print()
                         print()
@@ -828,9 +830,11 @@ def sneakerek(request):
 
         return render(request, 'sneakerek.html', context)
 def gyk(request):
+    q = request.GET.get('q', '')
+    print(q)
     best_shoes = {'Nike': ["Air Force 1", "Air Max 1", "Dunk High", "Dunk Low"], 'Air Jordan': ["Air Jordan 1 High", "Air Jordan 1 Mid", "Air Jordan 1 Low", "Air Jordan 3", "Air Jordan 4"],
                     'Adidas': ["Adidas Campus", "Adidas Gazelle", "Adidas Samba"], 'Yeezy': ["Yeezy Boost 350", "Yeezy Slide", "Yeezy Foam"], 'New Balance': ["New Balance 550", "New Balance 2002R", "New Balance 9060"]}
-    context = {'best_shoes': best_shoes}
+    context = {'best_shoes': best_shoes, 'q':q}
     return render(request, 'gyk.html', context)
 from django.http import JsonResponse
 from django.views import View
