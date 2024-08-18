@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% load static %}
 {% block content %}
 
 <style>
@@ -7,6 +7,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         margin-top: 0%;
+        overflow: hidden;
         gap: 1px;
     }
     .shoe_img {
@@ -67,7 +68,7 @@
             transition: ease;
             position: absolute;
             left:78%;
-            top: 24%;
+            top: 115%;
             bottom: auto;
             height: auto;
             width: 15%;
@@ -197,6 +198,24 @@
     .dbtermék{
         margin-left: 20%; font-family: courier;
     }
+    .kép{
+        width: 102.55%;
+        height: 600px;
+        margin-top: 5%;
+        margin-left: -2%;
+        object-fit: cover;
+        overflow: hidden;
+    }
+    .kép_szöveg{
+        left: 0;
+        width: 100%;
+        position:absolute;
+        font-family: "Bebas Neue", sans-serif;
+        color: white;
+        text-align: center;
+        margin-top: -25%;
+        font-size:70px;
+    }
     @media(max-width:1300px) {
         .home-container{
             grid-template-columns: repeat(2, 1fr);
@@ -244,8 +263,32 @@
             margin-bottom: 70%;
             /* margin-left: 15%; */
         }
+        .kép{
+            width: 103%;
+        }
+        .kép_szöveg{
+            margin-top: -40%;
+        }
     }
     @media(max-width:600px) {
+        .kép{
+            width: 105.5%;
+            height: 400px;
+            margin-top: 5%;
+            margin-left: -3%;
+            object-fit: cover;
+            overflow: hidden;
+        }
+        .kép_szöveg{
+            overflow: hidden;
+            width: 100%;
+            position:absolute;
+            font-family: "Bebas Neue", sans-serif;
+            color: white;
+            text-align: center;
+            margin-top: -55%;
+            font-size:40px;
+        }
         .home-container{
             grid-template-columns: repeat(2, 1fr);
         }
@@ -281,7 +324,7 @@
             font-size: x-small;
         }
         #rendezes{
-            top: 15%;
+            top: 550px;
             left: 50%;
             width: 37%;
             font-size: small;
@@ -325,6 +368,10 @@
 </div>
 
 {% else %}
+<div style="width: 100%;">
+    <img class="kép" src="{% static 'images/kép.jpg' %}" />
+    <h1 class="kép_szöveg">{{q}}</h1>
+</div>
 <div style="display: grid; grid-template-columns: 1fr 1fr; margin-top: 4%;">
     <div style="margin-top: 6%;">
         <h2 class="dbtermék">{{ db }} termék</h2>
@@ -412,14 +459,10 @@
                 <h3 style="text-align: center; text-transform: capitalize;">{{ cipő.name }}</h3>
                 <h3 id="ár"  style="color: gray;">
                     {% if cipő.akcios_ár != "0" %}
-                    <div style="text-align: center;">
-                        <span id="akcio" style="text-decoration: line-through;">{{cipő.akcios_ár}} Ft</span> 
-                        <span id="akcio">&nbsp;&nbsp;&nbsp;</span>
-                        <span id="red">{{cipő.price }} Ft-tól</span>
-                    </div>
-                    {%else%}
-                    <h3 style="text-align: center; color: gray;">{{cipő.price }} Ft-tól</h3>
+                                    <h3 style="text-decoration: line-through; color: gray; text-align: center;">{{cipő.akcios_ár}} Ft </h3>
                     {% endif %}
+                                <h3 style="color: gray; text-align: center;">
+                    {{cipő.price }} Ft-tól
                     
                 </h3>
                 <h2 class="no-link-style" style="color: rgb(9, 9, 75); text-align: center;">{{ cipő.cég }}</h2>
