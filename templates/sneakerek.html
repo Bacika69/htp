@@ -32,7 +32,7 @@
         margin-top: 10px;
         margin-left: 10px;
         width: 300px;
-        height: 330px;
+        height: 360px;
         padding: 20px;
         margin-right: 10px;
         border: 1px solid transparent;
@@ -68,7 +68,7 @@
             transition: ease;
             position: absolute;
             left:78%;
-            top: 115%;
+            top: 105%;
             bottom: auto;
             height: auto;
             width: 15%;
@@ -85,7 +85,7 @@
             transition: ease;
             position: absolute;
             left:82%;
-            top: 24%;
+            top: 105%;
             bottom: auto;
             height: auto;
             width: auto;
@@ -213,8 +213,11 @@
         font-family: "Bebas Neue", sans-serif;
         color: white;
         text-align: center;
-        margin-top: -25%;
+        margin-top: -23%;
         font-size:70px;
+    }
+    .dbtermék{
+        font-family: "Bebas Neue", sans-serif;
     }
     @media(max-width:1300px) {
         .home-container{
@@ -226,7 +229,7 @@
         }
         #rendezes{
             top: 15%;
-            left: 75%;
+            left: 72%;
             width: 37%;
             /* font-size: small; */
         }
@@ -240,11 +243,12 @@
         }
         .dbtermék{
             margin-top: 15%;
+            
         }
         #szin{
             left: 80%;
             /* font-size: small; */
-            top:12%;
+            top:72%;
         }
         .h2::after{
             display: none;
@@ -267,7 +271,7 @@
             width: 103%;
         }
         .kép_szöveg{
-            margin-top: -40%;
+            margin-top: -35%;
         }
     }
     @media(max-width:600px) {
@@ -336,7 +340,7 @@
         #szin{
             left: 60%;
             font-size: small;
-            top:12%;
+            top: 550px;
         }
         .nyil{
             margin-top: 40%;
@@ -368,8 +372,8 @@
 </div>
 
 {% else %}
-<div style="width: 100%;">
-    <img class="kép" src="{% static 'images/kép.jpg' %}" />
+<div style="width: 100%; margin-top: -5%;">
+    <img class="kép" src="{% static 'images/snkrkep.jpg' %}" />
     <h1 class="kép_szöveg">{{q}}</h1>
 </div>
 <div style="display: grid; grid-template-columns: 1fr 1fr; margin-top: 4%;">
@@ -383,7 +387,7 @@
             <path d="M2.302 8.024h10.182m9.212 0h-3.394" stroke="currentColor" stroke-width="1.358" stroke-miterlimit="6.667" stroke-linecap="square" stroke-linejoin="round"></path>
             <path d="M15.393 10.933a2.91 2.91 0 1 0 0-5.818 2.91 2.91 0 0 0 0 5.818z" stroke="currentColor" stroke-width="1.358" stroke-miterlimit="10" stroke-linecap="round"></path></svg>
         </div>
-        <div onclick="openrendezes()" style="cursor: pointer; display: flex; font-family: Courier;" >
+        <div onclick="openrendezes()" style="cursor: pointer; display: flex; font-family: 'Bebas Neue', sans-serif;" >
             {% if request.GET.r is none %}
             <h2>:Rendezés</h2>
             {% else %}

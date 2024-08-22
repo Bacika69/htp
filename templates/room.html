@@ -5,7 +5,7 @@
 <style>
     .home-container{
         display: grid;
-        grid-template-columns: 4fr 3fr;
+        grid-template-rows: 1fr 1fr;
         margin-top: 10%;
     }
     .text {
@@ -15,40 +15,24 @@
         box-sizing: border-box;
     }
     .img {
-        width: 100%; 
-        height: 100%;
+        width: 90%; 
+        height: 410px;
         image-rendering:auto;
-        /* object-fit: cover; */
+        object-fit: cover;
+        object-position: bottom;
         overflow: hidden;
     }
     .cég {
         font-family: helvetica;
         text-transform: uppercase;
-        margin-left: 0%;
         text-decoration: none;
         color: rgb(9, 9, 75);
         display: flex;
         margin-bottom: 0%;
-        width: fit-content;
+        width: 100%;
+        justify-content: center;
     }
-    .cég::after {
-            content: '';
-            position: absolute;
-            margin-left: 57%;
-            margin-right: 0%;
-            width: 0;
-            height: 2px;
-            margin-top: 2%;
-            left: 0;
-            background-color: rgb(0,106,78);
-            visibility: hidden;
-            transition: all 0.3s ease-in-out;
-        }
-
-    .cég:hover::after {
-        visibility: visible;
-        width: 0%;
-    }
+    
     #akcio{
         color: gray; text-align: center; font-size: x-large;
     }
@@ -62,11 +46,30 @@
     .ár_akcio{
         margin-top: 0%;
     }
-    @media(max-width:600px){
+    .kepek{
+        display: flex;
+    }
+    .kep_lonely_cont{
+        display: flex;
+        justify-content: center;
+    }
+    .img_lonely{
+        width: 60%; 
+        height: 410px;
+        image-rendering:auto;
+        object-fit: cover;
+        object-position: bottom;
+        overflow: hidden;
+        
+    }
+    @media(max-width:1200px){
         .home-container{
             display:block;
             margin-top:20%;
-        
+            grid-template-columns: 4fr 3fr;
+        }
+        .árcég{
+            justify-content: center;
         }
         #akcio{
             display: none;
@@ -78,6 +81,17 @@
         .text{
             margin-bottom: 18%;
         }
+        .kepek{
+            display: block;
+        }
+        .img{
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            object-position: none;
+            overflow: none;
+            
+        }
         #red{
             color: rgb(126, 3, 3);
             display: block;
@@ -86,31 +100,45 @@
         .ár_akcio{
             margin-top: 14%;
         }
+        .img_lonely{
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            object-position: none;
+            overflow: none;
+        }
     }
 </style>
 
 <div class="home-container">
-    <div style="display: grid;">
-        <img class="img" src="{{shoe.image}}" >
-        {% if shoe.image_2 != "nincs" %}
-        <img class="img" src="{{shoe.image_2}}">
-        {% endif %}
-    </div>
+    {% if shoe.image_2 != "nincs" %}
+        <div class="kepek">
+            <img class="img" src="{{shoe.image}}" >
+            {% if shoe.image_2 != "nincs" %}
+            <img class="img" src="{{shoe.image_2}}">
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="kep_lonely_cont" >
+            <img class="img_lonely" src="{{shoe.image}}" >
+        </div>
+    {% endif %}
+    
     <div class="text">
-        <h1 style="text-transform: capitalize;" >{{shoe.name}}</h1>
+        <h1 style="text-transform: capitalize; text-align: center;" >{{shoe.name}}</h1>
         <div class="árcég">
-            <div style="display: flex;">
+            <div style="display: flex; justify-content: center;">
                 {% if shoe.akcios_ár != "0" %}
                     <div class="ár_akcio">
-                        <span id="akcio" style="text-decoration: line-through;">{{shoe.akcios_ár}} Ft</span> 
+                        <span id="akcio" style="text-decoration: line-through; text-align: center;">{{shoe.akcios_ár}} Ft</span> 
                         <span id="akcio">&nbsp;</span>
                         <span id="red">{{shoe.price }} Ft-tól</span>
                     </div>
                 {%else%}
-                    <h2 style="text-align: center; color: gray;">{{shoe.price }} Ft-tól</h2>
+                    <h2 style="text-align: center; color: gray;text-align: center;">{{shoe.price }} Ft-tól</h2>
                 {% endif %}
             </div>
-            <a href="{{shoe.link}}"  style="color: rgb(9, 9, 75); text-decoration: none;"><h2 class="cég">{{shoe.cég}}</h2></a>
+            <a href="{{shoe.link}}"  style="color: rgb(9, 9, 75); text-decoration: none; text-align: center; "><h2 class="cég">{{shoe.cég}}</h2></a>
         </div>
     </div>
 

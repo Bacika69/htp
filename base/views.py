@@ -146,7 +146,7 @@ def home(request):
         for cipő_dolgok in cipők:
             rendezes = cipő_dolgok[1]
             rendezes = rendezes.replace(" ", "")
-            jo_link = cipő_dolgok[3]
+            jo_link = cipő_dolgok[4]
             jo_link = f"https://balazskicks.com{jo_link}"
             Shoe.objects.get_or_create(
                         name = cipő_dolgok[0],
@@ -720,7 +720,7 @@ def home(request):
                     for word in q.split(' '):
                         if word in shoe_name:
                             match_count += 1
-                    szürö_szavak = ["black", "state", "white", "red", "yellow","grey","light", "blue", "green", "orange", "prm", "pink","dark", "beige", "high", "alternate", "low", "mid", "navy","arctic", "mirage", "reverse", "elephant", "rope"]
+                    szürö_szavak = ["black", "state","sail", "mint", "nightwatch", "jackpot", "white", "red", "yellow","grey","light", "blue", "green", "orange", "prm", "pink","dark", "beige", "high", "alternate", "low", "mid", "navy","arctic", "mirage", "reverse", "elephant", "rope"]
                     if match_count == match_szam:
                         print()
                         print()
