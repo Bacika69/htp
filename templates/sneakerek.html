@@ -68,7 +68,7 @@
             transition: ease;
             position: absolute;
             left:78%;
-            top: 105%;
+            top: 800px;
             bottom: auto;
             height: auto;
             width: 15%;
@@ -85,7 +85,7 @@
             transition: ease;
             position: absolute;
             left:82%;
-            top: 105%;
+            top: 800px;
             bottom: auto;
             height: auto;
             width: auto;
@@ -213,7 +213,7 @@
         font-family: "Bebas Neue", sans-serif;
         color: white;
         text-align: center;
-        margin-top: -23%;
+        top: 230px;
         font-size:70px;
     }
     .dbtermék{
@@ -228,7 +228,7 @@
             
         }
         #rendezes{
-            top: 15%;
+            /* top: 15%; */
             left: 72%;
             width: 37%;
             /* font-size: small; */
@@ -248,7 +248,7 @@
         #szin{
             left: 80%;
             /* font-size: small; */
-            top:72%;
+            /* top:72%; */
         }
         .h2::after{
             display: none;
@@ -271,7 +271,7 @@
             width: 103%;
         }
         .kép_szöveg{
-            margin-top: -35%;
+           top: 250px;
         }
     }
     @media(max-width:600px) {
@@ -290,7 +290,7 @@
             font-family: "Bebas Neue", sans-serif;
             color: white;
             text-align: center;
-            margin-top: -55%;
+            top: 180px;
             font-size:40px;
         }
         .home-container{
@@ -372,15 +372,15 @@
 </div>
 
 {% else %}
-<div style="width: 100%; margin-top: -5%;">
-    <img class="kép" src="{% static 'images/snkrkep.jpg' %}" />
-    <h1 class="kép_szöveg">{{q}}</h1>
+<div style="width: 100%; margin-top: -5%;" >
+    <img class="kép fade-in lazy-load" src="{% static 'images/snkrkep.jpg' %}" />
+    <h1 class="kép_szöveg fade-in lazy-load">{{q}}</h1>
 </div>
-<div style="display: grid; grid-template-columns: 1fr 1fr; margin-top: 4%;">
+<div style="display: grid; grid-template-columns: 1fr 1fr; margin-top: 4%;" class="slide-in-bottom lazy-load">
     <div style="margin-top: 6%;">
         <h2 class="dbtermék">{{ db }} termék</h2>
     </div>
-    <div class="rendezesstilo">
+    <div class="rendezesstilo ">
         <div style="height: 30px; width: 30px; display: none;">
             <svg onclick="openrendezes()" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.302 16.751h3.394m16 0H11.583" stroke="currentColor" stroke-width="1.358" stroke-miterlimit="6.667" stroke-linecap="square" stroke-linejoin="round"></path>
             <path d="M8.606 19.66a2.91 2.91 0 1 0 0-5.818 2.91 2.91 0 0 0 0 5.818z" stroke="currentColor" stroke-width="1.358" stroke-miterlimit="10" stroke-linecap="round"></path>
@@ -444,7 +444,7 @@
 </div>
 <div class="home-container">
     {% for cipő in shoes %}
-    <div class="shoe_info">
+    <div class="shoe_info " >
         {% if shoes|length > 10 %}
         <a class="no-link-style" href="{% url 'home' %}?q={{cipő.name}}">
         {% else %}
@@ -457,9 +457,9 @@
             {% elif cipő.cég == 'sizeer' %}
                 <img class="sizeer" src="{{cipő.image}}">
             {% else %}
-                <img class="shoe_img" src="{{ cipő.image }}">
+                <img class="shoe_img fade-in lazy-load" src="{{ cipő.image }}">
             {% endif %}
-            <div class="text_style">
+            <div class="text_style fade-in lazy-load">
                 <h3 style="text-align: center; text-transform: capitalize;">{{ cipő.name }}</h3>
                 <h3 id="ár"  style="color: gray;">
                     {% if cipő.akcios_ár != "0" %}

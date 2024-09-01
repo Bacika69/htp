@@ -631,7 +631,7 @@ def home(request):
     while True:
         szam = 0
         for cipő in shoes:
-            if szam == 15:
+            if szam == 16:
                 break
             if cipő.akcios_ár != "0":
                 cipők['SALE'].append(cipő)
@@ -641,7 +641,7 @@ def home(request):
     while True:
         szam = 0
         for cipő in shoes:
-            if szam == 15:
+            if szam == 16:
                 break
             if '00s grey white' in cipő.name.lower() or '00s core black' in cipő.name.lower() or 'low 07 triple white' in cipő.name.lower() or 'military black' in cipő.name.lower() or 'thunder' in cipő.name.lower() or 'mid panda' in cipő.name.lower():
                 cipők['POPULAR'].append(cipő)
@@ -720,7 +720,7 @@ def home(request):
                     for word in q.split(' '):
                         if word in shoe_name:
                             match_count += 1
-                    szürö_szavak = ["black", "state","sail", "mint", "nightwatch", "jackpot", "white", "red", "yellow","grey","light", "blue", "green", "orange", "prm", "pink","dark", "beige", "high", "alternate", "low", "mid", "navy","arctic", "mirage", "reverse", "elephant", "rope"]
+                    szürö_szavak = ["black", "away", "og", "supreme", "charms", "state","sail", "mint", "nightwatch", "jackpot", "white", "red", "yellow","grey","light", "blue", "green", "orange", "prm", "pink","dark", "beige", "high", "alternate", "low", "mid", "navy","arctic", "mirage", "reverse", "elephant", "rope"]
                     if match_count == match_szam:
                         print()
                         print()

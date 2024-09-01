@@ -154,6 +154,9 @@
         
     }
     .nagykép{
+        object-fit: cover;
+        object-position: center;
+        overflow: hidden;
         margin-top: -2%;
         width: 102.55%;
         height: 780px;
@@ -229,8 +232,77 @@
         scrollbar-color: rgb(10,66,93) transparent; 
         scrollbar-width: thin; 
     }
+    .nagykép_szöveg{
+        left: 0;
+        width: 100%;
+        position: absolute;
+        font-family: "Bebas Neue", sans-serif;
+        color: white;
+        text-align: center;
+        top: 200px;
+        text-shadow: 2px 2px 5px rgba(157, 157, 157, 0.5);
+        
+        font-size:70px;
+    }
+    .scroll-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 40px;
+        color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        z-index: 10;
+        display: none;
+        transition: color 0.3s;
+    }
 
-    
+    .left-arrow {
+        left: 0;
+    }
+
+    .right-arrow {
+        right: 0;
+    }
+
+    .shoe-container:hover .scroll-arrow {
+        display: block;
+    }
+
+    .scroll-arrow:hover {
+        color: rgba(0, 0, 0, 1);
+    }
+    .nyilak{
+        position: absolute;
+        display: flex; 
+        gap: 5%;
+        width: min-content;
+        right: 0;
+        margin-top: -5%;
+        margin-right: 2%;
+    }
+    .x_design_nyil {
+        border-radius: 100%;
+        border-color: rgb(10, 66, 93);
+        background-color: white;
+        height: 50px;
+        width: 50px;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+        overflow: hidden;
+        transition: border-color 0.3s;
+        cursor: pointer;
+    }
+    .X_nyil {
+        color: rgb(10, 66, 93);
+        transition: color 0.3s;
+        size: 50px;
+    }
+    .x_design_nyil:hover .X_nyil {
+        border-color: black;
+        color: grey;
+    }
     
     @media(max-width:600px) {
         
@@ -243,6 +315,7 @@
             width: 103%;
             
         }
+        
         .home-container{
             grid-template-columns: repeat(2, 1fr);
         }
@@ -288,12 +361,18 @@
             /* font-size: x-small; */
         }
     }
-    
+    @media(max-width:1000px) {
+        .nyilak{
+            display: none;
+        }
+    }
     @media(max-width:600px) {
+
         .home-container{
             margin-top: 15%;
             grid-template-columns: repeat(2, 1fr);
         }
+        
         .shoe{
             width: 100%;
             margin-left: -3%;
@@ -343,16 +422,24 @@
         .kör{
             display: none;
         }
+        
         #szin{
             left: 60%;
             font-size: small;
             top:12%;
         }
         .nagykép{
+            object-fit: cover;
+            object-position: center;
+            overflow: hidden;
             width: 105.5%;
             margin-top: -3%;
-            height: 70%;
+            height: 600px;
             margin-left: -3%;
+        }
+        .nagykép_szöveg{
+            font-size: 40px;
+            top: 200px;
         }
         @media(max-width:600px){
         .room-container{
@@ -383,48 +470,54 @@
 </style>
 
 {% if q is None %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        var imgElement = document.getElementById('nagykép');
-        if (screenWidth < 700) {
-            imgElement.src = "{% static 'images/tel.png' %}";
-        } else {
-            imgElement.src = "{% static 'images/lap.png' %}";
-        }
-    });
-</script>
 <body id="home">
-    <div>
-        <img id="nagykép" class="nagykép" src="{% static 'images/tel.png' %}" />
+    <div >
+        <img id="nagykép" class="nagykép blur-in lazy-load" src="{% static 'images/snkrkep.jpg' %}" />
+        <h1 class="nagykép_szöveg fade-in lazy-load">TALÁLD MEG A KEDVENC SNEAKERED<br> A LEGJOBB ÁRON</h1>
     </div>
         <div id="homediv">
             {% for csoport, cipők in shoes.items %}
-                <div class="shoe-container">
+                <div class="shoe-container ">
                     <hr style="width: 95%;">
                     <div class="no-link-style_csoport">
                         <a method="GET"  href="{% url 'sneakerek'%}?q={{csoport}}" style="text-decoration: none">
-                            <h1 id="nagycsoport" class="csoport_style" >{{ csoport }}</h1>
+                            <h1 id="nagycsoport" class="csoport_style slide-in-bottom lazy-load" >{{ csoport }}</h1>
                         </a> 
                     </div>
                     <div class="össz-meg-container">
                         <a method="GET" href="{% url 'sneakerek'%}?q={{csoport}}" style="text-decoration: none;">
-                            <h2 class="össz-meg">Összes megtekintése</h2>
+                            <h2 class="össz-meg slide-in-bottom lazy-load">Összes megtekintése</h2>
                         </a>
                     </div>
+                    <div class="nyilak slide-in-bottom lazy-load">
+                        <button class="x_design_nyil" onclick="scrollbal( '{{csoport}}' )" style="z-index: 10;">
+                            <svg class="X_nyil" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="15" y1="6" x2="9" y2="12"></line>
+                                <line x1="9" y1="12" x2="15" y2="18"></line>
+                            </svg>
+                        </button>
+                        <button class="x_design_nyil" onclick="scrolljobb( '{{csoport}}' )" style="z-index: 10;">
+                            <svg class="X_nyil" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="9" y1="6" x2="15" y2="12"></line> 
+                                <line x1="15" y1="12" x2="9" y2="18"></line> 
+                            </svg>
+                            
+                        </button>
+                        
+                    </div>
                     
-                    <div class="shoe-group">
+                    <div id="shoe-group-{{csoport}}" class="shoe-group">
                         {% for cipő in cipők %}
-                            <div class="shoe">
+                            <div class="shoe ">
                                 <a class="no-link-style" href="{% url 'home' %}?q={{cipő.name}}">
                                     {% if cipő.cég == 'Foot Locker' %}
                                         <img class="Foot_locker" src="{{ cipő.image }}">
                                     {% elif cipő.cég == 'sizeer' %}
                                         <img class="sizeer" src="{{cipő.image}}">
                                     {% else %}
-                                        <img class="shoe_img" src="{{ cipő.image }}">
+                                        <img class="shoe_img fade-in lazy-load" src="{{ cipő.image }}">
                                     {% endif %}
-                                    <div id="text" class="text_style">
+                                    <div id="text" class="text_style fade-in lazy-load">
                                             <h3 style="text-align: center; text-transform: capitalize;">{{ cipő.name }}</h3>
                                             <div class="ár">
                                                 {% if cipő.akcios_ár != "0" %}
@@ -478,9 +571,9 @@
                             {% elif cipő.cég == 'sizeer' %}
                                 <img class="sizeer" src="{{cipő.image}}">
                             {% else %}
-                                <img class="shoe_img_q" src="{{ cipő.image }}">
+                                <img class="shoe_img_q fade-in lazy-load" src="{{ cipő.image }}">
                             {% endif %}
-                            <div class="q_text_style">
+                            <div class="q_text_style fade-in lazy-load">
                                 <h3 style="font-family: helvetica;text-align: center; text-transform: capitalize;">{{ cipő.name }}</h3>
                                 {% if cipő.akcios_ár != "0" %}
                                     <h3 style="text-decoration: line-through; color: gray; text-align: center;">{{cipő.akcios_ár}} Ft </h3>
@@ -497,13 +590,37 @@
             {% endif %} 
 {% endif %}
 
+
+<script>
+    function scrollbal(csoport) {
+        var container = document.getElementById('shoe-group-' + csoport);
+        var screenWidth = window.innerWidth;
+
+        container.scrollBy({
+            left: - (screenWidth - 50), 
+            behavior: 'smooth' 
+        });
+    }
+    function scrolljobb(csoport) {
+        var container = document.getElementById('shoe-group-' + csoport);
+        var screenWidth = window.innerWidth;
+        // print(screenwidth)
+        container.scrollBy({
+            left: screenWidth - (screenWidth * 0.03), 
+            behavior: 'smooth' 
+        });
+    }
+    
+</script>
+
 {% endblock content %}
 
 <script>
     // function changeStyle() {
     //     var element = document.getElementsByClassName('nav-container');
     //     element.style.background = "transparent"
-    // }
+    
+
         window.addEventListener('scroll', function() {
             const scrollPosition = window.scrollY || window.pageYOffset;
             console.log('Current scroll position:', scrollPosition);
@@ -514,5 +631,7 @@
             } else {
                 navbar.style.background = 'transparent';
             }
+            
         });
+        
 </script>

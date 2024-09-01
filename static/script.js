@@ -18,3 +18,22 @@ document.addEventListener('DOMContentLoaded', function () {
         
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const lazyElements = document.querySelectorAll('.lazy-load');
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Ha már betöltődött, nem kell tovább figyelni
+            }
+        });
+    });
+
+    lazyElements.forEach(element => {
+        observer.observe(element);
+    });
+});
+
+

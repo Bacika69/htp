@@ -1,148 +1,91 @@
 {% load static %}
 <style>
-    .end{
-        position:absolute;
+    .end {
+        position: absolute;
         background-color: rgb(10,66,93);
-        display: grid;
-        grid-template-columns: auto auto auto;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
         height: 30%;
-        width:  100%;
-        overflow: hidden;
-        left: 0; 
-        z-index: 900;
-        
-    }
-    .hs_end{
-
         width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        justify-items: center;
+        /* overflow: hidden; */
+        left: 0;
+        z-index: 900;
+        padding: 0 3%;
+        box-sizing: border-box;
+    }
 
-        margin-top: 1%;
-        margin-left: 6%;
-        gap: 20%;
+    .hs_end {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
     }
-    .h_div{
-        /* margin-left: 30%; */
-        width: 130%;
-        display: block;
-    }
-    
-    .h1_end{
-        color: white;
-        font-family: helvetica;
-        font-weight: 110;
+
+    .h_div {
         text-align: center;
+        flex-basis: 30%; /* Biztosítja, hogy a szélső elemek fix szélességűek legyenek */
+        max-width: 30%;
+        box-sizing: border-box;
     }
-    .h2_end{
+
+    .h2_end, .h3_end {
         color: white;
         font-family: helvetica;
         font-weight: 110;
         text-align: center;
         font-size: 20px;
     }
-    .h3_end{
+
+    .h3_end {
         color: lightgray;
-        font-size: 20px;
-        font-family: helvetica;
-        font-weight: 110;
-        text-align: center;
     }
-    #hr_end{
-        display: none;
 
+    #hr_end {
+        display: none;
     }
+
     @media(max-width:1200px) {
-        .hs_end{
-            gap: 0%;
-            margin-left: 1%;
-            width: 100%;
-        }
-        .end{
+        .end {
             margin-top: 5%;
             height: 20%;
         }
-        .h_div{
-            width: 90%;
-        }
-        
     }
-@media(max-width:530px) {
-        .end{
-            position:absolute;
-            background-color: rgb(10,66,93);
-            display:grid;
-            grid-template-columns: 1fr;
-            align-items: center;
-            justify-items: center;
-            height: 35%;
-            width:  100%;
-            overflow: hidden;
-            left: 0; 
-            z-index: 900;
-            
+
+    @media(max-width:880px) {
+        .end {
+            flex-direction: column;
+            height: 430px;
+            padding: 5% 0;
         }
-        .hs_end{
+
+        .hs_end {
+            flex-direction: column;
             width: 100%;
-            display:flow-root;
-            /* grid-template-columns: 1fr 1fr 1fr; */
-            justify-items: center;
-            margin-top: 1%;
-            margin-left: 0%;
-            gap: 30%;
         }
-        .h_div{
-            /* margin-left: 30%; */
+
+        .h_div {
             width: 100%;
-            display: block;
+            max-width: 100%;
+            margin-bottom: 10px;
         }
-        
-        .h1_end{
-            color: white;
-            font-family: helvetica;
-            font-weight: 110;
-            text-align: center;
-        }
-        .h2_end{
-            color: white;
-            font-family: helvetica;
-            font-weight: 110;
-            text-align: center;
-            font-size: 20px;
-        }
-        .h3_end{
-            color: lightgray;
+
+        .h2_end, .h3_end {
             font-size: 15px;
-            font-family: helvetica;
-            font-weight: 110;
-            text-align: center;
         }
-        
-        
-        .h2_end{
-            font-size: 13px;
-            font-weight: bold;
-        }
-        .h3_end{
-            font-size: 10px;
-            font-weight: bold;
-        }
-        #hr_end{
+
+        #hr_end {
             display: block;
             width: 50%;
-
-            
         }
-
     }
 </style>
+
 <div class="end">
     <div class="hs_end">
         <div class="h_div">
             <h2 class="h2_end">HypeToBuy</h2>
-            <h3 class="h3_end">Találd meg a kedvenc sneakered a legjobb áron</h3>
+            <h3 class="h3_end">Találd meg a kedvenc<br> sneakered a legjobb áron</h3>
         </div>
         <hr id="hr_end">
         <div class="h_div">

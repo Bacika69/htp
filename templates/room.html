@@ -62,6 +62,17 @@
         overflow: hidden;
         
     }
+    @media(min-width:1660px){
+        .home-container{
+            margin-top: 15%;
+        }
+        .img{
+            height: 600px;
+        }
+        .img_lonely{
+            height: 600px;
+        }
+    }
     @media(max-width:1200px){
         .home-container{
             display:block;
@@ -112,19 +123,19 @@
 
 <div class="home-container">
     {% if shoe.image_2 != "nincs" %}
-        <div class="kepek">
+        <div class="kepek fade-in lazy-load">
             <img class="img" src="{{shoe.image}}" >
             {% if shoe.image_2 != "nincs" %}
             <img class="img" src="{{shoe.image_2}}">
             {% endif %}
         </div>
     {% else %}
-        <div class="kep_lonely_cont" >
+        <div class="kep_lonely_cont fade-in lazy-load" >
             <img class="img_lonely" src="{{shoe.image}}" >
         </div>
     {% endif %}
     
-    <div class="text">
+    <div class="text fade-in lazy-load">
         <h1 style="text-transform: capitalize; text-align: center;" >{{shoe.name}}</h1>
         <div class="árcég">
             <div style="display: flex; justify-content: center;">
