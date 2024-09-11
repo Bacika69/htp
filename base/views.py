@@ -14,6 +14,7 @@ import  urllib.parse
 import random
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.db.models import Q
 
 def home(request):
 
@@ -785,26 +786,21 @@ def sneakerek(request):
                     'Adidas': ["Adidas Campus", "Adidas Gazelle", "Adidas Samba"], 'Yeezy': ["Yeezy Boost 350", "Yeezy Slide", "Yeezy Foam"], 'New Balance': ["New Balance 550", "New Balance 2002R", "New Balance 9060"]}
 
         query = request.GET.get('q', '') 
+        print(query)
         rendezes = request.GET.get('r', '')
         if query == 'SALE':
             shoes = shoes.filter(akcios_ár__gt=0)
         elif query == 'POPULAR':
             shoes = shoes.filter(name__icontains='00s Grey White') | shoes.filter(name__icontains='00s Core Black') | shoes.filter(name__icontains='Military Black') | shoes.filter(name__icontains='Thunder') | shoes.filter(name__icontains='07 triple white') | shoes.filter(name__icontains='mid panda')
-
         else:
-            if query == "NIKE DUNK" :
-                query = 'dunk'
-            elif query == "AIR FORCE":
-                query = 'force'
-            elif query == "ADIDAS CAMPUS":
-                query = 'campus'
-            elif query == 'ADIDAS YEEZY':
-                query = 'yeezy'
-            elif query == 'NEW BALANCE 550':
-                query = '550'
-            elif query == 'AIR JORDAN':
-                query = 'jordan'
-            shoes = shoes.filter(name__icontains=query) | shoes.filter(cég__icontains=query)
+            search_filter = Q()
+            for term in query.lower().split():
+                search_filter &= Q(name__icontains=term)
+            shoes = shoes.filter(search_filter)
+
+            
+
+
 
         szinek = ['White', 'Black', 'Grey', 'Brown', 'Red', 'Orange', 'Blue', 'Green', 'Pink', 'Yellow']
             
@@ -841,11 +837,27 @@ from django.views import View
 
 class SearchView(View):
     def get(self, request):
-        query = request.GET.get('q', '')
+        query = request.GET.get('q', '').strip()  # Get the search query and remove leading/trailing spaces
         if query:
-            results = Shoe.objects.filter(name__icontains=query).values('name', 'image', 'price', 'cég')
+            shoes = Shoe.objects.all()
+
+            # Create a search filter using Q objects, splitting query into terms
+            search_filter = Q()
+            for term in query.lower().split():
+                search_filter &= Q(name__icontains=term)  # All terms must be in the shoe name
+
+            # Apply the search filter to the shoes queryset
+            results = shoes.filter(search_filter).values('name', 'image', 'price', 'cég')
+
+            # Convert queryset to list and shuffle the results
             results = list(results)
             random.shuffle(results)
+
+            # Limit the results to 4 items
             results = results[:4]
-            return JsonResponse(list(results), safe=False)
+
+            # Return the shuffled, limited results as JSON
+            return JsonResponse(results, safe=False)
+        
+        # If no query is provided, return an empty list
         return JsonResponse([], safe=False)
