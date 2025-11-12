@@ -126,7 +126,7 @@ SECRET_KEY = 'your-secret-key'  # Állítsd be a saját titkos kulcsodat
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # Állítsd be True-ra, ha fejlesztési módban vagy
 
-ALLOWED_HOSTS = ['13.60.81.85', '127.0.0.1']
+ALLOWED_HOSTS = ['13.60.81.85', '127.0.0.1', 'psl-scale.com', 'www.psl-scale.com']
 
 # Application definition
 
@@ -222,4 +222,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # AWS_S3_FILE_OVERWRITE = False
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 
