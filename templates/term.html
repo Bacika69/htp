@@ -1,0 +1,149 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .gyk_div{
+        position: relative;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        padding: 20%;
+        padding-top: 0%;
+        padding-bottom: 0%;
+        /* margin-left: 5%; */
+        
+    }
+    .h1_gyk{
+       
+        font-family: "Bebas Neue", sans-serif;
+        color: rgb(0, 10, 15);
+        /* text-decoration:; */
+        margin-bottom: 10%;
+        font-size: 40px;
+        text-align: center;
+        font-weight: 100;
+    }
+    .h2_gyk{
+        font-family: helvetica;
+        /* font-weight: 100; */
+        /* text-decoration: underline; */
+
+    }
+    .h3_gyk{
+        font-family: helvetica;
+        margin-left: 5%;
+        /* font-weight: 500; */
+        
+
+    }
+    .h3_gyk_vég{
+        font-family: helvetica;
+        text-align: center;
+        font-weight: 100;
+        color: rgb(10,66,93);
+
+    }
+    .nolink{
+        text-decoration: none;
+        color: black;
+        
+        
+    }
+    @media(max-width:600px) {
+        .hs_end{
+            margin-left: 0%;
+            width:90%;
+        }
+        .gyk_div{
+            margin-left: 1%;
+            margin-top: 25%;
+            padding: 2%;
+        }
+        .h1_gyk{
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .h2_gyk{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .h3_gyk{
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .h3_gyk_vég{
+            font-weight: bold;
+        }
+    }
+</style>
+
+
+<div class="gyk_div">
+    <h1 class="h1_gyk">Terms of Use</h1>
+
+    <h2 class="h2_gyk"><i>Acceptance of Terms</i></h2>
+    <h3 class="h3_gyk">
+        By accessing and using psl-scale.com, you agree to be bound by these Terms of Use. 
+        If you do not agree, please discontinue use of the site immediately. 
+        These terms may be updated from time to time, and continued use of the site 
+        constitutes acceptance of any changes.
+    </h3><br>
+
+    <h2 class="h2_gyk"><i>User Responsibilities</i></h2>
+    <h3 class="h3_gyk">
+        <ul>
+            <li>You agree to use PSL-Scale for lawful purposes only.</li>
+            <li>You must not upload, share, or distribute harmful, offensive, or illegal content.</li>
+            <li>You are responsible for maintaining the confidentiality of any information you provide.</li>
+            <li>You acknowledge that PSL-Scale is for informational and educational purposes, not for medical or professional evaluation.</li>
+        </ul>
+    </h3><br>
+
+    <h2 class="h2_gyk"><i>Privacy and Data</i></h2>
+    <h3 class="h3_gyk">
+        PSL-Scale respects your privacy. Uploaded images are processed temporarily and 
+        automatically deleted within one hour. We do not store, sell, or share your personal data. 
+        For more details, please review our Privacy Policy.
+    </h3><br>
+
+    <h2 class="h2_gyk"><i>Intellectual Property</i></h2>
+    <h3 class="h3_gyk">
+        All content, design, and technology on PSL-Scale.com are protected by copyright 
+        and intellectual property laws. You may not copy, reproduce, or redistribute 
+        any part of the site without prior written permission.
+    </h3><br>
+
+    <h2 class="h2_gyk"><i>Limitations of Liability</i></h2>
+    <h3 class="h3_gyk">
+        PSL-Scale is provided “as is” without warranties of any kind. We do not guarantee 
+        accuracy, completeness, or reliability of AI-generated results. Users assume full 
+        responsibility for how they interpret and use the information provided.
+    </h3><br>
+
+    <h2 class="h2_gyk"><i>Prohibited Uses</i></h2>
+    <h3 class="h3_gyk">
+        You agree not to misuse PSL-Scale, including but not limited to:
+        <ul>
+            <li>Attempting to reverse-engineer or exploit the AI system.</li>
+            <li>Using the platform for harassment, discrimination, or harmful comparisons.</li>
+            <li>Uploading content that violates intellectual property rights or privacy laws.</li>
+        </ul>
+    </h3><br>
+
+    <h2 class="h2_gyk"><i>Termination</i></h2>
+    <h3 class="h3_gyk">
+        We reserve the right to suspend or terminate access to PSL-Scale at any time, 
+        without notice, if these Terms of Use are violated.
+    </h3><br>
+
+    <h2 class="h2_gyk"><i>Contact Us</i></h2>
+    <h3 class="h3_gyk">
+        If you have questions about these Terms of Use, please contact us:<br>
+        📧 <strong>pslscale.info@gmail.com</strong>
+    </h3><br>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .gyk_div{
+        position: relative;
+        margin-top: 10%;
+        margin-bottom: 10%;
+        padding: 20%;
+        padding-top: 0%;
+        padding-bottom: 0%;
+        /* margin-left: 5%; */
+        
+    }
+    .h1_gyk{
+       
+        font-family: "Bebas Neue", sans-serif;
+        color: rgb(0, 10, 15);
+        /* text-decoration:; */
+        margin-bottom: 10%;
+        font-size: 40px;
+        text-align: center;
+        font-weight: 100;
+    }
+    .h2_gyk{
+        font-family: helvetica;
+        /* font-weight: 100; */
+        /* text-decoration: underline; */
+
+    }
+    .h3_gyk{
+        font-family: helvetica;
+        margin-left: 5%;
+        /* font-weight: 500; */
+        
+
+    }
+    .h3_gyk_vég{
+        font-family: helvetica;
+        text-align: center;
+        font-weight: 100;
+        color: rgb(10,66,93);
+
+    }
+    .nolink{
+        text-decoration: none;
+        color: black;
+        
+        
+    }
+    @media(max-width:600px) {
+        .hs_end{
+            margin-left: 0%;
+            width:90%;
+        }
+        .gyk_div{
+            margin-left: 1%;
+            margin-top: 25%;
+            padding: 2%;
+        }
+        .h1_gyk{
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .h2_gyk{
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .h3_gyk{
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .h3_gyk_vég{
+            font-weight: bold;
+        }
+    }
+</style>
+
+
+<div class="gyk_div">
+    <h2 class="h2_gyk"><i>About Looksmaxxing</i></h2>
+    <h3 class="h3_gyk">
+        <p>Looksmaxxing is the process of improving one’s physical appearance through deliberate, often strategic changes in grooming, fitness, skincare, posture, and style. It’s rooted in the idea that while genetics play a role in how we look, many aspects of our appearance are modifiable.</p>
+
+        <p>The term originated in online communities focused on self-improvement and aesthetics, but it has since evolved into a broader cultural phenomenon that intersects with psychology, fashion, and even technology.</p>
+
+        <p>At its core, looksmaxxing is about <strong>agency</strong>. It is the belief that individuals can take control of their appearance—not to conform to unrealistic standards, but to feel more confident, presentable, responsible, and aligned with their goals.</p>
+
+        <p>For some people, this means adopting a skincare routine to improve skin clarity. For others, it involves building muscle mass, improving posture, or learning how to dress in a way that complements their body type and facial structure. The journey is personal, and the motivations vary—from dating and career advancement to self-esteem and curiosity.</p>
+
+        <p>Looksmaxxing is not inherently superficial. In fact, many practitioners view it as a form of <strong>self-care and discipline</strong>. It encourages awareness of how lifestyle choices—sleep, hydration, nutrition, stress—affect physical appearance.</p>
+
+        <p>It also promotes education around concepts like facial harmony, bone structure, and the impact of lighting and angles in photography. In this sense, looksmaxxing overlaps with photography, modeling, and even digital media literacy.</p>
+
+        <p>However, the practice also raises important ethical and psychological questions. Where is the line between healthy self-improvement and obsessive comparison? How do we ensure that looksmaxxing remains empowering rather than alienating?</p>
+
+        <p>These questions are especially relevant in a world saturated with filters, algorithms, and curated images. At PSL-Scale, we believe that looksmaxxing should be approached with <strong>curiosity, not judgment</strong>—with <strong>self-awareness, not self-criticism</strong>.</p>
+
+        <p>Our platform offers a playful glimpse into how AI interprets facial features. It is not a verdict, but a reflection—a way to explore how machines "see" us, and how that perception compares to our own.</p>
+
+        <p>We do not promote rigid beauty standards or encourage users to chase perfection. Instead, we invite exploration. Looksmaxxing, when done thoughtfully, can be a tool for growth, not pressure.</p>
+
+        <p>Whether you're just beginning to explore the concept or you're deep into your self-improvement journey, remember: <strong>no algorithm can define your worth</strong>. Looksmaxxing is a lens—not a label. Use it to learn, to reflect, and to evolve on your own terms.</p>
+    </h3><br>
+
+    <h2 class="h2_gyk"><i>Top 5 Looksmaxxing Tips</i></h2>
+    <h3 class="h3_gyk">
+        <p>Whether you're just starting or refining your routine, here are five practical, beginner-friendly tips to enhance your appearance naturally:</p>
+        <ul>
+            <li><strong>1. Master the Basics:</strong> Prioritize sleep, hydration, and a balanced diet. These have the biggest impact on skin, eyes, and overall vitality.</li>
+            <li><strong>2. Skincare Consistency:</strong> Use a gentle cleanser, moisturizer, and sunscreen daily. Avoid overcomplicating your routine.</li>
+            <li><strong>3. Posture & Body Language:</strong> Standing tall with open shoulders instantly improves your presence and perceived confidence.</li>
+            <li><strong>4. Grooming & Hair:</strong> Find a haircut that suits your face shape and maintain facial hair (or clean shave) based on what enhances your features.</li>
+            <li><strong>5. Style Smart:</strong> Wear clothes that fit well and complement your proportions. Neutral colors and clean lines are timeless.</li>
+        </ul>
+    </h3><br>
+
+    <h2 class="h2_gyk"><i>Looksmaxxing Glossary</i></h2>
+    <h3 class="h3_gyk">
+        <p>New to the terminology? Here's a quick guide to common looksmaxxing terms:</p>
+        <ul>
+            <li><strong>Canthal Tilt:</strong> The upward or downward angle between the inner and outer corners of the eyes. A positive tilt is often considered more youthful.</li>
+            <li><strong>Jawline Definition:</strong> The sharpness and visibility of the jawbone, often associated with low body fat and good bone structure.</li>
+            <li><strong>Facial Harmony:</strong> The balance and proportion between facial features, such as the eyes, nose, lips, and chin.</li>
+            <li><strong>Hunter Eyes:</strong> Deep-set, horizontally aligned eyes with a focused gaze—often idealized in male aesthetics.</li>
+            <li><strong>Meatmaxxing:</strong> Slang for building muscle mass through strength training and nutrition.</li>
+            <li><strong>Frame:</strong> The width of your shoulders relative to your waist and neck—affects how clothing fits and how masculine/feminine you appear.</li>
+            <li><strong>Submental Fat:</strong> Fat under the chin, often targeted in jawline enhancement routines.</li>
+        </ul>
+    </h3><br>
+</div>
+
+
+
+
+{% endblock %}
